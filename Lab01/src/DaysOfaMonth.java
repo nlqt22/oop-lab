@@ -57,10 +57,21 @@ public class DaysOfaMonth {
         return month;
     }
 
-    public static void main(String[] args) {
-        System.out.println(monthValidation());
+    static int answer(int month) {
+        int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        System.out.print("Nhập năm: ");
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        System.out.println(n);
+        int year = sc.nextInt();
+        int leapYear = 0;
+        if(year % 100 == 0 && year % 400 != 0) leapYear = 1;
+        if(month == 2) return daysInMonth[1] + leapYear;
+        else {
+            return daysInMonth[month-1] + leapYear;
+        }
+    }
+
+    public static void main(String[] args) {
+        int ans = answer(monthValidation());
+        System.out.println("Num of Days: "+ ans);
     }
 }
